@@ -7,7 +7,7 @@ def load_model(GAN="PGAN"):
     :param GAN: Type of GAN to be downloaded
     :return: Freezed Generator of the GAN
     """
-
+    
     torch.hub.set_dir("../models")
 
     use_gpu = True if torch.cuda.is_available() else False

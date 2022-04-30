@@ -38,7 +38,7 @@ def calculate_metrics():
         for mode in modes:
             if mode == "GAN":
                 # 2976 is the index of last saved image of GAN output
-                secondImage = io.imread(f"../results/{folder}/GAN/image_2976.png")
+                secondImage = io.imread(f"../results/{folder}/GAN/image_29751.png")
             else:
                 method, ID = mode.split("_")
                 if method == "QSGD":

@@ -3,7 +3,7 @@ import torch.nn as nn
 from utils import plot_image, save_image
 
 
-def compressor(model, image, save_path, image_latent=None, iterations=3000, log_freq=25):
+def compressor(model, image, save_path, image_latent=None, iterations=30000, log_freq=250):
     """
     Given a generator and an image find the latent vector using SGD
     :param model: Generator model
@@ -63,7 +63,8 @@ def decompressor(model, image_latent, save_path):
     :param save_path: Path to which images have to be saved
     :return: Generated image
     """
-
+    #TODO save image_latent to some image
+    save_image(image_latent, save_path, "latent", 9999)
     output = model(image_latent)
 
     generated_img = output.clone().detach().cpu()
