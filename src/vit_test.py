@@ -27,7 +27,8 @@ def read_photo(path):
     img = Image.fromarray(img)
 
     # Preprocess image
-    tfms = transforms.Compose([transforms.Resize(model.image_size), transforms.ToTensor(), transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5]),])
+    tfms = transforms.Compose([transforms.Resize(model.image_size), 
+    transforms.ToTensor(), transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5]),])
     img = tfms(img).unsqueeze(0)
     # transform = transforms.Compose([transforms.ToTensor()])
     # img = transform(img)
@@ -47,8 +48,8 @@ def read_photo(path):
 
     return dict(zip(idx_list, prob_list))
 
-og_dict = read_photo('./src/comp/original_image.png')
-gen_dict = read_photo('./src/comp/image_29751.png')
+og_dict = read_photo('./src/comp/logo.png')
+gen_dict = read_photo('./src/comp/logo_gan.png')
 
 match_keys = list(set(og_dict.keys()).intersection(set(gen_dict.keys())))
 og_match = {key: og_dict[key] for key in match_keys}
@@ -60,3 +61,5 @@ df.insert(0, "Label", labels)
 df.columns = ['Label', 'Original Probability','Generated Probability']
 df['Difference in Probability'] = abs(df.iloc[:,1] - df.iloc[:,2])
 df.sort_values(by="Original Probability", ascending=False)
+vit_score = len(match_keys)/100
+print(vit_score)
