@@ -3,6 +3,15 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Executables
+*.exe
+allmodel
+allrange
+dump
+output
+test_ind
+test_ind_scaled
+
 # C extensions
 *.so
 
